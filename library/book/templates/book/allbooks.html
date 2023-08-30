@@ -1,0 +1,10 @@
+{% extends 'book/base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+<ul>
+    {% for el in list_book %}
+    <h2>{{el.title}}</h2>
+    <h3>{{el.author}}</h3>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -9,13 +9,12 @@ class Genre(models.Model):
 class Book(models.Model):
     title=models.CharField('Название', max_length=100)
     author=models.CharField('Автор', max_length=50)
-    photo=models.ImageField(upload_to='static/img')
     date=models.DateTimeField('Дата публикации',auto_now=True)
     genre=models.ManyToManyField(Genre)
 
     def __str__(self):
         pass
-        return 'Название книги - '+str(self.title)+' автор - '+str(self.author)+', описание - '+str(self.discription)
+        return 'Название книги - '+str(self.title)+' автор - '+str(self.author)
 
     class Meta:
         ordering=['title','author']

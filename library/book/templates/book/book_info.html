@@ -1,1 +1,6 @@
 {% extends 'book/base.html' %}
+{% block body %}
+{% for i in bk %}
+<p>{{i}}</p>
+{% endfor %}
+{% endblock %}
