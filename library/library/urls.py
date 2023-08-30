@@ -1,13 +1,13 @@
 
 from django.contrib import admin
-from django.urls import path,re_path
-from book.views import book,index,other
-from django.conf import settings
+from django.urls import path
+from book.views import index,Page_not_found
 from django.conf.urls.static import static
-urlpatterns = [
+from django.conf import settings
 
-    path('', index,kwargs={'title':'metro2035','author':'Gluhovskii'}),
-    re_path('other', other),
-    re_path('book', book)
-] +static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
-# 127.0.0.1:8000/book/hfdskfdkjsfh/thtrtrht/123231/tgrgr
+urlpatterns = [
+    path('', index,name='index'),
+    #path('add',Formbook,name='form_book')
+]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+
+handler404=Page_not_found

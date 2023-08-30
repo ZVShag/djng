@@ -1,22 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from library import urls
+from django.http import HttpResponse,HttpResponseNotFound
+from .models import Book
+from .forms import book
 
-def index(request,title,author):
-    return HttpResponse(f"""
-    <p>Вы попали на страницу с описанием книги</p>
-    <h1>{title}</h1>
-    <h3> Автор: {author}</h3>""")
-# схема(http,https,) body(byte string) method, encoding
+def index(request):
+    return render(request,'book/book_info.html', {'title': 'Информация о книге'})
 
-def book(request):
-    host=request.META['HTTP_HOST']
-    uagent=request.META['HTTP_USER_AGENT']
-    path=request.path
+def Formbook(request):
+    this_book=book()
+    return render(request,'Add_book.html',{'form':this_book})
 
-    return HttpResponse(f'Host: {host}\n UAgent: {uagent}\n Path: {path}')
-
-def other(request):
-    return render(request,'book/index.html')
-
-    
+def Page_not_found(request,exception):
+    return HttpResponseNotFound('<h1> Страница к котрой вы обратились не существует</h1>')
